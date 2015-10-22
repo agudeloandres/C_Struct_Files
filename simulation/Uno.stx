@@ -1,0 +1,76 @@
+[Main]
+;*** DO NOT TOUCH! The format of this file WILL change.
+Product=Setup Pro
+Version=1.0
+OEM=Eschalon Trial Edition
+Base Directory=c:\usuarios\examen
+
+[Settings]
+Application Name=EXAMEN FINAL
+Window Title=EXAMEN FINAL
+Background Title=Examen Final Simulación
+Directory=c:\examen
+PM Group=Examen
+Prompt PM=TRUE
+Disk Label Mask=Disk #%d
+Background=Dithered Bitmap
+Bitmap File=c:\archiv~1\micros~2\bitmaps\tlbr_w95\camera.bmp
+ReadMe File=c:\usuarios\examen\leame.txt
+ReadMe Font=Default
+Resize ReadMe=FALSE
+ReadMe At Start=FALSE
+Brand Source=TRUE
+Brand Destination=FALSE
+End Program=
+BDE=FALSE
+
+[Branding]
+INI File=
+Section=
+Name=
+Company=
+
+[Components]
+1=Demostracion
+2=Examen
+
+[Files]
+att.bgi="att.bgi" 6332 A 0 C AB
+ayuda.h="ayuda.h" 2141 A 0 C AB
+ayuda.txt="ayuda.txt" 1250 A 0 C AB
+bold.chr="bold.chr" 14670 A 0 C AB
+botones.h="botones.h" 19422 A 0 C AB
+caja.h="caja.h" 3391 A 0 C AB
+cga.bgi="cga.bgi" 6332 A 0 C AB
+egavga.bgi="egavga.bgi" 5554 A 0 C AB
+escala.h="escala.h" 2623 A 0 C AB
+euro.chr="euro.chr" 8439 A 0 C AB
+examen.doc="examen.doc" 37376 A 2 C AB
+funciona.txt="funciona.txt" 629 A 0 C AB
+goth.chr="goth.chr" 18063 A 0 C AB
+herc.bgi="herc.bgi" 6204 A 0 C AB
+ibm8514.bgi="ibm8514.bgi" 6665 A 0 C AB
+inicio.h="inicio.h" 23651 A 0 C AB
+introduc.txt="introduc.txt" 761 A 0 C AB
+lcom.chr="lcom.chr" 12083 A 0 C AB
+leame.txt="leame.txt" 2417 A 0 C AB
+litt.chr="litt.chr" 5131 A 0 C AB
+mouse.h="mouse.h" 9241 A 0 C AB
+objeto.h="objeto.h" 5403 A 0 C AB
+opcion.h="opcion.h" 1268 A 0 C AB
+pantalla.h="pantalla.h" 2233 A 0 C AB
+pc3270.bgi="pc3270.bgi" 6012 A 0 C AB
+pozo.cpp="pozo.cpp" 12104 A 1 C AB
+pozo.exe="pozo.exe" 132854 A 1 C AB
+pozo.obj="pozo.obj" 47938 A 0 C AB
+sans.chr="sans.chr" 13596 A 0 C AB
+scri.chr="scri.chr" 10987 A 0 C AB
+simp.chr="simp.chr" 8437 A 0 C AB
+trip.chr="trip.chr" 16677 A 0 C AB
+tscr.chr="tscr.chr" 17355 A 0 C AB
+
+[PM Items]
+pozo.cpp=1 "%d\pozo.cpp" "%d" "" "0"
+pozo.exe=1 "%d\pozo.exe" "%d" "" "0"
+examen.doc=2 "%d\examen.doc" "%d" "" "0"
+

@@ -1,0 +1,62 @@
+/****************************************************************************
+ 
+ Nombre: CIRCULOS.C
+ Utilidad: Dibuja c¡rculos de diferentes tama¤os y colores aleatoriamente.
+ Autor: Sergio Pacho
+ Fecha: 16 de junio de 1998
+ E-mail: cworld@programando.com
+ Web: http://www.programando.com/c/cworld
+ 
+ Este programa es una sencilla demostraci¢n de como generar valores aleatorios
+ en la programaci¢n C.
+ Lo £nico que te pido es que no lo modifiques, y que se lo pases a todos tus
+ amigos, colegas...
+ Tambi‚n puedes decir que lo has conseguido en:
+ http://www.programando.com/c/cworld
+
+****************************************************************************/
+
+#include <stdio.h>
+#include <conio.h>
+#include <graphics.h>
+#include <stdlib.h>
+#include <time.h>
+
+void main(void)
+{
+        int driver = DETECT, modo, error;
+        int x , y , radio, color;
+        randomize(); // inicializamos el generador aleatorio de numeros...
+        initgraph(&driver, &modo, "c:\\tc\\bgi"); // ...y el modo gr fico
+        error = graphresult();
+        if (error != grOk) exit(1); // si hay error...
+        if ((driver != EGA) && (driver != VGA)) // ...o la tarjeta es algo antigua
+        {
+                closegraph();
+                exit(1);
+        }
+        while (!kbhit()) // mientras no se pulse una tecla
+        {
+                x=random(640);         // valor aleatorio entre 0 y 639
+                y=random(480);         // valor aleatorio entre 0 y 479
+                radio=random(100);     // valor aleatorio entre 0 y 99
+                color=random(16);      // valor aleatorio entre 0 y 15
+                setcolor(color);       // color de dibujo
+                setfillstyle(1,color); // estilo y color de relleno
+
+                ///////////////////////////////////
+                // Algunas combinaciones:        //
+                //                               //
+                // Circulos Rellenos:            //
+                // fillellipse(x,y,radio,radio); //
+                //                               //
+                // P¡xels:                       //
+                // putpixel(x,y,color);          //
+                //                               //
+                ///////////////////////////////////
+
+                fillellipse(x,y,radio,radio);
+
+                delay(100); // retraso de una d‚cima de segundo
+        }
+}

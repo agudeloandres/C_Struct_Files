@@ -1,0 +1,83 @@
+/*Libreria raton.c: 
+         Esta libreria tiene las mismas funciones que la clase anterior, pero esta desarrollada en C, por
+     lo que no se realiza a nivel de objetos, como en el ejemplo anterior. */
+
+     /* Libreria para el uso del raton en lenguaje C */ 
+     #include <dos.h> 
+     #include <stdio.h> 
+     /*#include <conio.h>*/ 
+
+     int Inizializar(short int *);  /* Inicializa el raton, para poder usarlo */ 
+     void MostrarPuntero(void);     /* Muestra en pantalla es cursor del raton */ 
+     void OcultarPuntero(void);     /* Oculta el cursor del raton */ 
+     /* Obtiene el estado de los botones, asi como las coordenadas del raton */ 
+     void ObtenEstado(int *, int*, short int *, short int *, short int *); 
+
+     int Inizializar(short int *NumBotones){ 
+        union REGS cpu; 
+        cpu.x.ax=0; 
+        int86(51,&cpu,&cpu); 
+        *NumBotones=cpu.x.bx; 
+        if(cpu.x.ax==0){ 
+           return 0; 
+        } else { 
+           return 1; 
+        } 
+     } 
+
+     void MostrarPuntero(void){ 
+        union REGS cpu; 
+        cpu.x.ax=0x01; 
+        int86(51,&cpu,&cpu); 
+     } 
+
+     void OcultarPuntero(void){ 
+        union REGS cpu; 
+        cpu.x.ax=0x02; 
+        int86(51,&cpu,&cpu); 
+     } 
+
+     void ObtenEstado(int *coorx, int *coory, short int *BotonI, 
+        short int *BotonD, short int *BotonC){ 
+
+        union REGS cpu; 
+        *BotonI=0; 
+        *BotonC=0; 
+        *BotonD=0; 
+        cpu.x.ax=3; 
+        int86(51, &cpu, &cpu); 
+        *coorx=cpu.x.cx/8; 
+        *coory=cpu.x.dx/8; 
+        if((cpu.x.bx & 0x01)==0x01) *BotonI=1; 
+        if((cpu.x.bx & 0x02)==0x02) *BotonD=1; 
+        if((cpu.x.bx & 0x04)==0x04) *BotonC=1; 
+     } 
+       
+
+     /* Funcion main incluida, para observar el uso de estas funciones */ 
+     /*void main(void){ 
+        short int NumBot; 
+        int x,y; 
+        short int bi,bd,bc; 
+        clrscr(); 
+        printf("%d ",Inizializar(&NumBot)+1); 
+        if(Inizializar(&NumBot)==0){ 
+           printf("ERROR: No tiene instalado el controlador de raton, asegurese"); 
+           printf("\n"); 
+           printf("de que lo ha instalado, pues sin el no podra usar el raton."); 
+           printf("\n"); 
+           exit(); 
+        } 
+
+        MostrarPuntero(); 
+        for(;!kbhit();){ 
+           ObtenEstado(&x,&y,&bi,&bd,&bc); 
+           gotoxy(5,2); 
+           printf("%5d - %5d",x,y); 
+           gotoxy(5,5); 
+           if(bi) { printf("Boton izquierdo pulsado"); return; } 
+           if(bd) { printf("Boton derecho pulsado"); continue; } 
+           if(bc) { printf("Boton central pulsado"); continue; } 
+           printf("                        "); 
+        } 
+     }*/ 

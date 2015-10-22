@@ -1,0 +1,137 @@
+/****************************************************************************
+
+ Nombre: PUERTOS.C
+ Utilidad: Permite la comunicaci¢n entre dos ordenadores por el puerto serie.
+ Autor: Sergio Pacho
+ Fecha: 6 de julio de 1998
+ E-mail: cworld@programando.com
+ Web: http://www.programando.com/c/cworld
+
+ Este programa es un ejemplo de como enviar informaci¢n entre dos ordenadores
+ conectados a trav‚s del puerto serie ( COM1 o COM2 ).Podr¡amos decir que se
+ trata de una especie de 'chat'.Para ello utilizaremos la int 14h y algunos de
+ sus servicios.Es posible que funcione incorrectamente seg£n como tengas las
+ configuraciones de Windows '95 y/o MS-DOS.Si no te funciona en Windows '95
+ prueba a reiniciar el equipo en modo MS-DOS.Si no te funciona en MS-DOS, pues
+ pru‚balo desde Windows '95... en fin ya sabes como es esto, no ?
+
+ Lo £nico que te pido es que no lo modifiques, y que se lo pases a todos tus
+ amigos, colegas...
+ Tambi‚n puedes decir que lo has conseguido en:
+ http://www.programando.com/c/cworld
+
+****************************************************************************/
+
+#include <stdio.h>
+#include <dos.h>
+#include <io.h>
+#include <conio.h>
+#include <alloc.h>
+#include <stdlib.h>
+
+/* Definimos el valor que toman los puertos */
+#define COM1 0
+#define COM2 1
+
+/* Definimos las distintas velocidades de transmisi¢n */
+#define bd_110 0
+#define bd_150 32
+#define bd_300 64
+#define bd_600 96
+#define bd_1200 128
+#define bd_2400 160
+#define bd_4800 192
+#define bd_9600 224
+
+/* Definimos los valores para los bits de datos */
+#define bitd_7 2
+#define bitd_8 3
+
+/* Definimos los valores para los bits de stop */
+#define bits_1 0
+#define bits_2 4
+
+/* Definimos los valores para la paridad */
+#define nula 0
+#define impar 8
+#define par 24
+
+void inicializar(int,int,int,int,int);
+unsigned char compruebo(int);
+void leer_car(unsigned char *,int);
+void enviar_car(unsigned char,int);
+
+void main(void)
+{
+        unsigned char let,car,byte1;
+        clrscr();
+        inicializar(COM1,bd_9600,impar,bits_1,bitd_8);
+        while (let!=27)
+        {
+                if (compruebo(COM1)&1)   // comprobamos si el bit 0 del valor retornado
+                {                        // es 1
+                        leer_car(&car,COM1);
+                        if (car!=0)
+                        {
+                                if (car=='\r') car='\n';
+                                printf("%c",car);
+                        }
+                        car=0;
+                        enviar_car(0,COM1);
+                }
+                if (kbhit())
+                {
+                        let=getch();
+                        if (let!=27)
+                        {
+                                enviar_car(let,COM1);
+                        }
+                }
+        }
+}
+
+void inicializar(int puerto,int baudios,int paridad, int b_stop, int b_datos)
+{
+        unsigned char total; // sumaremos los par metros de inicializaci¢n
+        total=baudios+paridad+b_stop+b_datos;
+        asm {                // inicializamos el puerto
+                        mov ah,0h      // el servicio 0h nos permite inicializar el puerto
+                        mov dx,puerto  // pasamos el puerto a 'dx'
+                        mov al,total   // pasamos la suma de los par metros a 'al'
+                        int 14h        // solicitamos la interrupci¢n 14h
+        }
+}
+
+unsigned char compruebo(int puerto)
+{
+        unsigned char com;
+        asm {             // estado del puerto
+                mov ah,3h      // el servicio 3h comprueba el estado del puerto
+                mov dx,puerto  // pasamos el puerto a 'dx'
+                int 14h        // solicitamos la interrupci¢n 14h
+                mov com,ah     // c¢digo de error retornado a 'ah' y pasado a 'com'
+        }
+        return com;
+}
+
+void leer_car(unsigned char *caracter , int puerto)
+{
+        unsigned char letra;
+        asm {             // recoge un car cter
+                mov ah,2h          // el servicio 2h nos permite recoger un car cter
+                mov dx,puerto  // pasamos el puerto a 'dx'
+                int 14h        // solicitamos la interrupci¢n 14h
+                mov letra,al   // el car cter es retornado a 'al' y lo pasamos a 'letra'
+        }
+        *caracter=letra;
+}
+
+void enviar_car(unsigned char caracter, int puerto)
+{
+        asm {               // envia un car cter
+                mov ah,1h        // el servicio 1h nos permite enviar un car cter
+                mov dx,puerto    // pasamos el puerto a 'dx'
+                mov al,caracter  // pasamos el 'caracter' a 'al'
+                int 14h          // solicitamos la interrupci¢n 14h
+        }
+}
