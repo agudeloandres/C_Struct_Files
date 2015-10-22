@@ -1,0 +1,7 @@
+Asteroids.zip:
+Contains these files: egavga.bgi, asteroid.exe, asteroid.c
+
+Description: Part 1 of a continuing series in Computer shopper, outlining
+a home-made version of Asteroids.  This part deals with the creation of the
+triangular ship, setting video mode, making flicker-free graphics, and 
+rotating & moving the ship.

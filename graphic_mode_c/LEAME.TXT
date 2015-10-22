@@ -1,0 +1,73 @@
+	--------------------------------------------------------
+	LEAME CAOS: Efecto Mariposa. Ver 1.5.   
+			Julio de 1998
+	--------------------------------------------------------
+	        (c) Copyright  FBL&JDR&BP  1998
+
+------------------------------------------------
+COMO USAR ESTE DOCUMENTO
+------------------------------------------------
+Para ver LEAME.TXT en la pantalla en el Bloc de notas 
+maximice la ventana Bloc de notas.
+
+Para imprimir LEAME.TXT, abra este documento en el 
+Bloc de notas o en otro procesador de texto y utilice
+el comando Imprimir del menu Archivo.
+
+--------------------
+CONTENIDO
+--------------------
+
+REQUERIMIENTOS DE SOFTWARE Y HARDWARE
+
+NOTAS SOBRE LA INSTALACION DE:
+CAOS: Efecto Mariposa. Ver 1.5. 
+
+EJECUCION DE CAOS: Efecto Mariposa. Ver 1.5. 
+
+==========================================
+REQUERIMIENTOS DE SOFTWARE Y HARDWARE
+==========================================
+
+Requerimientos Minimos de Hardware
+
+1 Procesador 486 a 100 mhz.
+4 Mb de RAM
+1 Mb de RAM de Video
+Espacio requerido 10 Mb
+
+Requerimientos de SoftWare
+
+Sistema Operativo D.O.S o Windows 95
+
+Si su idea es explorar los archivos fuentes debe tener en su computador lo siguiente:
+
+Borland C++ Version 4.5 o superiores
+
+===============================
+NOTAS SOBRE LA INSTALACION DE:
+CAOS: Efecto Mariposa. Ver 1.5. 
+===============================
+
+1. Inicie la computadora con la version del Sistema Operativo actual.
+2. Inserte el Disquete 1 en la unidad A.
+3. Escriba a: setup y siga las instrucciones en la pantalla.
+4. Reinicie la computadora.
+
+======================================
+EJECUCION DE CAOS: Efecto Mariposa. Ver 1.5. 
+======================================
+
+Para iniciar CAOS: Efecto Mariposa. Ver 1.5. 
+desde un disco duro:
+
+Si el programa no esta configurado para que se ejecute cada vez 
+que se inicie el sistema se presentara:
+
+Si utiliza D.O.S: a continuacion del simbolo del sistema, escriba 
+Mariposa y luego presione ENTER.
+
+Si utiliza Windosw's 95: en el comando programas del menu inicio encontrara el acceso directo a CAOS: Efecto Mariposa. Ver 1.5. Haga click en la opcion Mariposa.exe
+
+Tambien utilizando Windosw's 95: en el comando ejecutar del menu inicio escriba la ruta donde se encuentra el programa y a continuacion el comando Mariposa y luego presione ENTER.
+Linea de comandos: c:\caos\mariposa.exe
